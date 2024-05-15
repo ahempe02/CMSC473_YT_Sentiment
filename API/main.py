@@ -4,9 +4,11 @@ from transformers import pipeline
 
 sentiment_pipeline = pipeline("sentiment-analysis", model="joshu710/CMSC473")
 translation_pipeline = pipeline("translation", model="lseely916/CMSC_473_mt5", max_length=400)
+'''
 translation_pipeline_es = pipeline("translation_es_to_en", model="lseely916/CMSC_473_mt5", max_length=400)
 translation_pipeline_zh = pipeline("translation_zh_to_en", model="lseely916/CMSC_473_mt5", max_length=400)
 translation_pipeline_ja = pipeline("translation_ja_to_en", model="lseely916/CMSC_473_mt5", max_length=400)
+'''
 
 app = Flask(__name__)
 CORS(app)
@@ -45,7 +47,7 @@ def sentiment_api():
 def translation_api_es():
     request_val = request.args.get("text")
     if request_val:
-        return translation_pipeline_es(f"translate {request_val} to English: ")
+        return translation_pipeline(f"translate Spanish to English: {request_val}")
     else:
         return "400: \'text\' query not found", 400
 
@@ -54,7 +56,7 @@ def translation_api_es():
 def translation_api_zh():
     request_val = request.args.get("text")
     if request_val:
-        return translation_pipeline_zh(f"translate {request_val} to English: ")
+        return translation_pipeline(f"translate Chinese to English: {request_val}")
     else:
         return "400: \'text\' query not found", 400
 
@@ -63,7 +65,7 @@ def translation_api_zh():
 def translation_api_ja():
     request_val = request.args.get("text")
     if request_val:
-        return translation_pipeline_ja(f"translate {request_val} to English: ")
+        return translation_pipeline(f"translate Japanese to English: {request_val}")
     else:
         return "400: \'text\' query not found", 400
 
@@ -72,6 +74,6 @@ def translation_api_ja():
 def translation_api():
     request_val = request.args.get("text")
     if request_val:
-        return translation_pipeline(f"translate {request_val} to English: ")
+        return translation_pipeline(f"translate to English: {request_val}")
     else:
         return "400: \'text\' query not found", 400

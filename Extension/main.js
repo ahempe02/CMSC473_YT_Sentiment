@@ -20,8 +20,8 @@ function getButtonOnClick(alanguage){
 				button.innerHTML = "🙁"
 			}
 		});
-		// let api_url2 = "http://127.0.0.1:5000/translation_" + lang + "?text=" + text;
-		let api_url2 = "http://127.0.0.1:5000/translation?text=" + text;
+		let api_url2 = "http://127.0.0.1:5000/translation_" + lang + "?text=" + text;
+		// let api_url2 = "http://127.0.0.1:5000/translation?text=" + text;
 		fetch(api_url2).then(response => {
 			if(!response.ok){
 				throw new Error('No response.');
